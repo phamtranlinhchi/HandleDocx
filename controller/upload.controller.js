@@ -93,7 +93,6 @@ const upload = catchAsync(async (req, res) => {
                     }
                 }
             });
-            // console.log(segment['w:r'][0]['w:t']);
         }
     });
 
