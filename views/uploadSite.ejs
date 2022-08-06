@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload</title>
+</head>
+<body>
+    <input type="file">
+    <button>Gửi</button>
+    <script>
+        const submit = document.querySelector('button');
+        submit.addEventListener('click',async () =>{
+            const inputFiles  = document.querySelector('input');
+            const data = new FormData();
+            data.append('file', inputFiles.files[0])
+            try{
+
+                const result = await( await fetch('/upload', {
+                    method: 'POST',
+                    body: data
+                })).json()
+                if(result.status === 'success')
+                    alert('Gửi thành công')
+                else 
+                    alert('Gửi thất bại')
+            } catch (err) {
+                alert('Gửi thất bại')
+            }
+        })
+    </script>
+</body>
+</html>
